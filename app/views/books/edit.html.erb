@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <main>
+          <div class="container">
+          <div class="row">
+          <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+            
+        <h1>Editing Book</h1>
+            
+            <% if @book.errors.any? %>
+            
+             <%= @book.errors.count %>件のerrorが発生しました
+             
+             <ul>
+              <% @book.errors.full_messages.each do |message| %>
+               <li><%= message %></li>
+              <% end %>
+             </ul>
+         
+            <% end %>
+            
+        <%= form_with model: @book,url: update_book_path(@book.id), method: :patch do |f| %>
+            
+        <p>Title</p>
+        <%= f.text_field :title %>
+            
+        <p>Opinion</p>
+        <%= f.text_area :body %>
+        
+        <p></p>
+        
+        <p><%= f.submit 'Update Book', class: "btn btn-sm btn-success" %></p>
+        
+        <% end %>
+        
+        <%= link_to "Show", book_path %>
+        |
+        <%= link_to "Back", books_path %>
+        
+      </div>
+     </div>
+    </div>
+        
+    </main>
+  </body>
+</html>
